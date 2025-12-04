@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Blog from './components/Blog'
 const initianFromData = {
   title: "",
   author: "",
@@ -9,7 +10,7 @@ const initianFromData = {
 }
 function App() {
   const [formData, setFormData] = useState(initianFromData);
-  const [blogdata, setblogdata] = useState([]);
+  const [blogData, setblogdata] = useState([]);
   function updateData(event) {
     const key = event.target.name;
     const inputType = event.target.type;
@@ -87,6 +88,18 @@ function App() {
 
           <button type="submit"  className="btn btn-primary mb-3 mx-5 mt-5">Salva</button>
         </form>
+
+      </div>
+      <div>
+        {blogData.map((item, index)=>
+        <Blog 
+        key = {index}
+        title =  {item.title}
+        author = {item.author}
+        body =   {item.body}
+        />
+        )}
+        
 
       </div>
     </section>
