@@ -9,6 +9,7 @@ const initianFromData = {
 }
 function App() {
   const [formData, setFormData] = useState(initianFromData);
+  const [blogdata, setblogdata] = useState([]);
   function updateData(event) {
     const key = event.target.name;
     const inputType = event.target.type;
@@ -18,12 +19,18 @@ function App() {
     };
     setFormData(newObjet)
   }
+  function creaBlog (event) {
+    event.preventDefault();
+    setblogdata((current)=>[...current, formData]);
+    setFormData(initianFromData)
+    
+  }
 
   return (
     <section className='container'>
       <h2>inserisci un nuovo Blog</h2>
       <div>
-        <form action="">
+        <form action="" onSubmit={creaBlog}>
           {/* titolo */}
           <label htmlFor="title" className="form-label">Titolo</label>
           <input
@@ -78,7 +85,7 @@ function App() {
           </div>
 
 
-          <button type="submit" className="btn btn-primary mb-3 mx-5 mt-5">Salva</button>
+          <button type="submit"  className="btn btn-primary mb-3 mx-5 mt-5">Salva</button>
         </form>
 
       </div>
